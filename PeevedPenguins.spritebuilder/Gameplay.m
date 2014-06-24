@@ -53,4 +53,11 @@
     [_contentNode runAction:follow];
 }
 
+-(void)retry
+{
+    //reload the level
+    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"Gameplay"]];
+    CCLOG(@"retry button hit");
+}
+
 @end

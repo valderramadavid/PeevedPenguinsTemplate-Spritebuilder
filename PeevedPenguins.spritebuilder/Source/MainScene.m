@@ -16,4 +16,10 @@
     [[CCDirector sharedDirector] replaceScene:gameplayScene];
 }
 
+-(void)retry
+{
+    //reload the level
+    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"Gameplay"]];
+}
+
 @end

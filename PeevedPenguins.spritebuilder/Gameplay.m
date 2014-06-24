@@ -43,12 +43,13 @@
     
     //manually crate and apply a force to launch the penguin
     CGPoint launchDirection = ccp(1,0);
-    CGPoint force = ccpMult(launchDirection, 50000);
+    CGPoint force = ccpMult(launchDirection, 10000);
     [penguin.physicsBody applyForce:force];
     
     //ensure the followed object is within the visible area
     self.position = ccp(0,0);
     CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox];
+    [self runAction:follow];
 }
 
 @end

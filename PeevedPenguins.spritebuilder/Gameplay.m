@@ -139,6 +139,8 @@ static const float MIN_SPEED = 5.f;
         //follow the flying penguin
         _followPenguin = [CCActionFollow actionWithTarget:_currentPenguin worldBoundary:self.boundingBox];
         [_contentNode runAction:_followPenguin];
+        
+        _currentPenguin.launched = TRUE;
     }
 }
 
@@ -172,25 +174,24 @@ static const float MIN_SPEED = 5.f;
 - (void)update:(CCTime)delta
 {
     if(_currentPenguin.launched){
-    
-    //if the speed of the penguin is below the minimum, assume the attempt is over
-    if(ccpLength(_currentPenguin.physicsBody.velocity) < MIN_SPEED){
-        [self nextAttempt];
-        return;
-    }
-    
-    int xMin = _currentPenguin.boundingBox.origin.x;
-    if(xMin < self.boundingBox.origin.x){
-        [self nextAttempt];
-        return;
-    }
-    
-    int xMax = xMin + _currentPenguin.boundingBox.size.width;
-    
-    if(xMax > (self.boundingBox.origin.x + self.boundingBox.size.width)){
-        [self nextAttempt];
-        return;
-    }
+        //if the speed of the penguin is below the minimum, assume the attempt is over
+        if(ccpLength(_currentPenguin.physicsBody.velocity) < MIN_SPEED){
+            [self nextAttempt];
+            return;
+        }
+        
+        int xMin = _currentPenguin.boundingBox.origin.x;
+        if(xMin < self.boundingBox.origin.x){
+            [self nextAttempt];
+            return;
+        }
+        
+        int xMax = xMin + _currentPenguin.boundingBox.size.width;
+        
+        if(xMax > (self.boundingBox.origin.x + self.boundingBox.size.width)){
+            [self nextAttempt];
+            return;
+        }
     }
 }
 
